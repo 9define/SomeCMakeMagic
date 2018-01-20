@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# build a single example from a folder in the parent directory
+cd "${0%/*}"/../$1
+if [ -e build ]; then
+	echo "A build already exists for example '$1', removing it..."
+	rm -rf build
+fi
+mkdir build
+cd build
+cmake ..
+make
