@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# test a single example from a folder in the parent directory
+# cd "${0%/*}"/../$1
+
+# clean and build the example before testing
+"${0%/*}"/clean-example $1
+"${0%/*}"/build-example $1
+
+# do different tests based on the example
+case "$1" in
+	"hello_world")
+		bash -c "${0%/*}"/../$1/build/$1
+		if [[ `bash -c "${0%/*}"/../$1/build/$1` == "Hello, world!" ]]; then
+			exit 0
+		else
+			exit 1
+		fi
+		;;
+esac
+
+"${0%/*}"/clean-example $1
+

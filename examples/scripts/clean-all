@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source "${0%/*}"/base.sh
+
+operate_on_all_examples "clean"
